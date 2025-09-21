@@ -19,13 +19,23 @@ def my_func(i):
 # Finished cancels after 9 seconds
 
 with ThreadPoolExecutor(max_workers=len(tables)) as executor:
-    futures = executor.map(my_func, tables)
-    for future in futures:
-        print(future) 
+    # futures = executor.map(my_func, tables)
+    
+    ## method 2: using loops in parallel
+    for i in tables:
+        future = executor.submit(my_func, i)
+
 
 # Output using for Threads
 # Finished products after 1 seconds
 # Finished customers after 3 seconds
 # Finished orders after 6 seconds
 # Finished reviews after 6 seconds
+# Finished cancels after 6 seconds
+
+# Output using for Threads and loops
+# Finished orders after 1 seconds
+# Finished reviews after 2 seconds
+# Finished products after 3 seconds
+# Finished customers after 6 seconds
 # Finished cancels after 6 seconds
